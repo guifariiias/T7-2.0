@@ -1,8 +1,15 @@
-const menuBtn = document.querySelector('.menu-btn');
-const mobileMenu = document.querySelector('.mobile-menu-overlay');
+  const menuBtn = document.querySelector('.menu-btn');
+  const mobileMenu = document.querySelector('.mobile-menu-overlay');
+  const body = document.body;
+  const dropdownMobile = document.querySelector('.dropdown-mobile');
+  const dropdownBtn = document.querySelector('.dropdown-btn');
 
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('active');           // transforma hambúrguer em X
-  mobileMenu.classList.toggle('active');       // abre/fecha overlay
-  document.body.classList.toggle('menu-active'); // aplica blur ao resto do site
-});
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    body.classList.toggle('menu-active');
+  });
+
+  dropdownBtn.addEventListener('click', () => {
+    dropdownMobile.classList.toggle('active');
+  });
