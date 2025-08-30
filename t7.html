@@ -13,60 +13,103 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="images/t7-logo.png" alt="T7 COMPANY"></a>
+<header>
+  <nav class="navbar">
+    <div class="container">
+
+      <a href="index.html" class="logo">
+        <img src="images/t7-logo.png" alt="T7 Company Logo" class="logo-img">
+        <span class="logo-text">Company</span>
+      </a>
+
+      <div class="nav-links-desktop">
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+
+        <div class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            Serviços <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#">PLACEHOLDER</a>
+            <a href="#">PLACEHOLDER</a>
+            <a href="#">PLACEHOLDER</a>
+          </div>
         </div>
-        <nav>
-            <ul>
-                <li class="dropdown">
-                    <a href="projetos.html" id="projetos-link">
-                        Projetos <i id="projetos-icon" class="fa-solid fa-angle-down"></i>
-                    </a>
-                    <div class="dropdown-content">
-                        <div class="overlay"></div>
-                        <div class="dropdown-header">
-                            <h2>Nossos Projetos</h2>
-                        </div>
-                        <div class="projects-container">
-                            <div class="project-item">
-                                <img src="images/gta6.png" alt="Projeto 1">
-                                <p>Projeto 1</p>
-                            </div>
-                            <div class="project-item">
-                                <img src="images/gta6.png" alt="Projeto 2">
-                                <p>Projeto 2</p>
-                            </div>
-                            <div class="project-item">
-                                <img src="images/gta6.png" alt="Projeto 3">
-                                <p>Projeto 3</p>
-                            </div>
-                            <div class="project-item">
-                                <img src="images/gta6.png" alt="Projeto 4">
-                                <p>Projeto 4</p>
-                            </div>
-                            <div class="project-item">
-                                <img src="images/gta6.png" alt="Projeto 5">
-                                <p>Projeto 5</p>
-                            </div>
-                        </div>
-                        <div class="dropdown-text">
-                            <a href="projetos.html">MAIS PROJETOS <i class="fa-solid fa-angle-right"></i> </a>
-                        </div>
-                    </div>
-                </li>
-                <li><a href="novidades.html">Novidades</a></li>
-                <li><a href="#">Loja <i class="fa-solid fa-arrow-up-right-from-square"></i> </a></li>
-                <li><a href="#">Downloads <i class="fa-solid fa-arrow-up-right-from-square"></i> </a></li>
-                <li><a href="equipe.html">Equipe</a></li>
-            </ul>
-        </nav>
-        <div class="header__social">
-            <a class="icon__social-link" href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a class="icon__social-link" href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a class="icon__social-link" href="https://github.com/guifariiias" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        </div>
-    </header>
+
+        <a href="#c">Contato</a>
+      </div>
+
+      <div class="social-icons-desktop">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <button class="menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+<div class="mobile-menu-overlay">
+  <a href="index.html" class="mobile-logo">
+    <img src="images/t7-logo.png" alt="Logo" class="mobile-logo-img">
+    <span class="mobile-logo-text">Company</span>
+  </a>
+
+<div class="mobile-images-section">
+  <div class="mobile-images-header">
+  <span class="projects-title">Alguns projetos</span>
+  <a href="#" class="projects-link">
+    Ver todos os projetos <i class="fa-solid fa-arrow-right-long"></i>
+  </a>
+</div>
+
+  <div class="mobile-images">
+    <div class="mobile-image-card">
+      <img src="images/Projeto1.jpg" alt="Imagem 1">
+    </div>
+    <div class="mobile-image-card">
+      <img src="images/Projeto2.jpg" alt="Imagem 2">
+    </div>
+    <div class="mobile-image-card">
+      <img src="images/Projeto3.jpg" alt="Imagem 3">
+    </div>
+    <div class="mobile-image-card">
+      <img src="images/Projeto4.jpg" alt="Imagem 4">
+    </div>
+  </div>
+</div>
+
+  <div class="mobile-links">
+    <a href="#">Sobre</a>
+
+    <div class="dropdown-mobile">
+      <button class="dropdown-btn">
+        Serviços <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="dropdown-content">
+          <a href="#">PLACEHOLDER</a>
+          <a href="#">PLACEHOLDER</a>
+          <a href="#">PLACEHOLDER</a>
+      </div>
+    </div>
+
+    <a href="#">Contato</a>
+  </div>
+
+  <div class="social-icons">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+</div>
+
+</header>
+
     
     
 <!--======================================================== Banner  =========================================================-->
