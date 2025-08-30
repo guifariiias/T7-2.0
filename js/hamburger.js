@@ -13,3 +13,20 @@
   dropdownBtn.addEventListener('click', () => {
     dropdownMobile.classList.toggle('active');
   });
+
+    let lastScrollTop = 0;
+  const navbar = document.querySelector('.navbar');
+
+  window.addEventListener('scroll', () => {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScrollTop) {
+      // Scroll para baixo → esconde a navbar
+      navbar.classList.add('hidden');
+    } else {
+      // Scroll para cima → mostra a navbar
+      navbar.classList.remove('hidden');
+    }
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Evita valores negativos
+  });
