@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nossos Projetos - Carrossel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <style>
+        :root {
+            --body-padding: 32px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: system-ui;
+            padding: var(--body-padding) var(--body-padding) 128px;
+            background: black;
+            color: white;
+            margin: 0;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 48px;
+            line-height: 2;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .explore-projects {
+            width: 100%;
+            max-width: 1900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .action-bar {
+            font-size: 16px;
+            margin-bottom: 32px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 400;
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            
+            a {
+                border-bottom: 3px solid #e6bb2d;
+                text-decoration: none;
+                padding-bottom: 8px;
+                color: white;
+                transition: all 0.3s ease;
+            }
+            
+            a:hover {
+                color: #e6bb2d;
+            }
+        }
+
+        .carousel-container {
+            position: relative;
+            margin: 0 auto;
+            width: 90%;
+            padding: 0 60px;
+        }
+
+        .carousel {
+            display: grid;
+            gap: 24px;
+            grid-auto-flow: column;
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            padding: 16px 0;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .carousel-btn {
+            pointer-events: auto;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 24px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-btn:hover {
+            animation: pulse 0.6s infinite alternate;
+            color: #e6bb2d;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+
+        .prev-btn {
+            position: relative;
+            left: -70px;
+        }
+
+        .next-btn {
+            position: relative;
+            right: -70px;
+        }
+
+        .project-card {
+            width: 265px;
+            position: relative;
+            overflow: hidden;
+            scroll-snap-align: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 350px;
+            flex-shrink: 0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(211, 177, 65, 0);
+        }
+        
+        .project-card img {
+            width: 265px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: filter 0.3s ease;
+        }
+        
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgb(20, 20, 20);
+            padding: 19.2px;
+            border-radius: 0 0 10px 10px;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+        }
+        
+        .project-card:hover .project-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .project-info h3 {
+            font-size: 17.6px;
+            margin: 0 0 9.6px 0;
+            color: #e6bb2d;
+        }
+        
+        .project-info p {
+            font-size: 12.8px;
+            line-height: 1.4;
+            color: #ccc;
+            margin-bottom: 16px;
+        }
+        
+        .project-icons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .project-icons i {
+            font-size: 19.2px;
+            color: #888;
+            transition: color 0.3s ease;
+        }
+        
+        .project-icons i:hover {
+            color: #e6bb2d;
+        }
+        
+        .project-number {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background: rgb(20, 20, 20);
+            color: #e6bb2d;
+            padding: 4.8px 9.6px;
+            border-radius: 4px;
+            font-size: 12.8px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .explore-games-button {
+            display: block;
+            width: max-content;
+            margin: 48px auto 0; 
+            background-color: #e6bb2d;
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 17.6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .explore-games-button:hover {
+            background-color: transparent;
+            color: #e6bb2d;
+            border: 2px solid #e6bb2d;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 187, 45, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .carousel-container {
+                width: 95%;
+                padding: 0 50px;
+            }
+            
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 19.2px;
+            }
+            
+            .prev-btn {
+                left: -50px;
+            }
+
+            .next-btn {
+                right: -50px;
+            }
+            
+            h1 {
+                font-size: 35.2px;
+            }
+            
+            .action-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .carousel-container {
+                padding: 0 40px;
+                width: 100%;
+            }
+            
+            .carousel {
+                gap: 15px;
+            }
+            
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .prev-btn {
+                left: -30px;
+            }
+
+            .next-btn {
+                right: -30px;
+            }
+            
+            .project-card {
+                height: 320px;
+                width: 240px;
+            }
+            
+            .project-card img {
+                height: 320px;
+                width: 240px;
+            }
+            
+        }
+
+    </style>
+</head>
+<body>
+    <section class="explore-projects">
+        <h1>NOSSOS PROJETOS</h1>
+        
+        <div class="action-bar">
+            <a href="#jogos-corrida">TEXT 1</a>
+            <a href="#jogos-aventura">TEXT 2</a>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="project-card">
+                    <div class="project-number">Projeto 1</div>
+                    <img src="/images/Projeto4.jpg" alt="MidNight Club 3 DUB Edition">
+                    <div class="project-info">
+                        <h3>MidNight Club 3 DUB Edition</h3>
+                        <p>Um jogo de corrida urbana com personalização extensiva de veículos e estilo único.</p>
+                        <div class="project-icons">
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-number">Projeto 2</div>
+                    <img src="/images/Projeto4.jpg" alt="MidNight Club Los Angeles">
+                    <div class="project-info">
+                        <h3>MidNight Club Los Angeles</h3>
+                        <p>Corridas ilegais pelas ruas de Los Angeles com gráficos impressionantes.</p>
+                        <div class="project-icons">
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-number">Projeto 3</div>
+                    <img src="/images/Projeto4.jpg" alt="Grand Theft Auto 4">
+                    <div class="project-info">
+                        <h3>Grand Theft Auto 4</h3>
+                        <p>A história de Niko Bellic em sua busca pelo sonho americano em Liberty City.</p>
+                        <div class="project-icons">
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                            <i class="fab fa-steam"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-number">Projeto 4</div>
+                    <img src="/images/Projeto4.jpg" alt="Grand Theft Auto 5">
+                    <div class="project-info">
+                        <h3>Grand Theft Auto 5</h3>
+                        <p>Três criminosos se envolvem em assaltos ousados enquanto pressionam against a corrupt government.</p>
+                        <div class="project-icons">
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                            <i class="fab fa-steam"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-number">Projeto 5</div>
+                    <img src="/images/Projeto4.jpg" alt="Red Dead Redemption">
+                    <div class="project-info">
+                        <h3>Red Dead Redemption</h3>
+                        <p>Um fora da lei em fuga embarca em uma jornada para redimir seus pecados no Velho Oeste.</p>
+                        <div class="project-icons">
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                            <i class="fab fa-steam"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-number">Projeto 6</div>
+                    <img src="/images/Projeto4.jpg" alt="Red Dead Redemption 2">
+                    <div class="project-info">
+                        <h3>Red Dead Redemption 2</h3>
+                        <p>A história de Arthur Morgan e da gangue Van der Linde em sua luta pela sobrevivência no fim da era do velho oeste.</p>
+                        <div class="project-icons">
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                            <i class="fab fa-steam"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-nav">
+                <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
+                <button class="carousel-btn next-btn" onclick="scrollCarousel(1)">&#10095;</button>
+            </div>
+        </div>
+        
+        <a href="projetos.html" class="explore-games-button">Ver todos os Projetos</a>
+    </section>
+
+    <script>
+        function scrollCarousel(direction) {
+            const carousel = document.querySelector('.carousel');
+            const scrollAmount = 289;
+            carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+        
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.zIndex = '1';
+            });
+        });
+        
+        // Prevenir zoom com dois dedos
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        let initialX = null;
+        let initialY = null;
+        
+        document.addEventListener('touchstart', function(e) {
+            initialX = e.touches[0].clientX;
+            initialY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            if (initialX === null || initialY === null) {
+                return;
+            }
+            
+            let currentX = e.touches[0].clientX;
+            let currentY = e.touches[0].clientY;
+            
+            let diffX = Math.abs(currentX - initialX);
+            let diffY = Math.abs(currentY - initialY);
+            
+            if (diffX > diffY && !e.target.closest('.carousel')) {
+                e.preventDefault();
+            }
+            
+            initialX = currentX;
+            initialY = currentY;
+        }, { passive: false });
+        
+        document.addEventListener('touchend', function() {
+            initialX = null;
+            initialY = null;
+        });
+    </script>
+</body>
+</html>
