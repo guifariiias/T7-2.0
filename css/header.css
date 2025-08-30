@@ -449,4 +449,5 @@ body.menu-active .navbar {
   .container { padding-left: 20px; padding-right: 10px; }
   .nav-links-desktop { display: none; }
   .social-icons-desktop { display: none; }
+  .navbar { padding-bottom: 10px;}
 }
