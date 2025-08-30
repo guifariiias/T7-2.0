@@ -223,7 +223,7 @@ a {
   width: 100%;
   max-width: 430px;
   height: 100%;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(5px);
   z-index: 1040;
   display: flex;
